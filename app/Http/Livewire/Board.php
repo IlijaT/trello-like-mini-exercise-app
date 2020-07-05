@@ -40,9 +40,11 @@ class Board extends Component
 
         $this->newGroupLabel = '';
     }
-
-    public function removeTask($taskId)
+    
+    public function removeTask()
     {
+        dd('removing////');
+        $task = Task::findOrFail($taskId);
         Task::destroy($taskId);
         $this->groups = Group::ordered()->get();
     }
