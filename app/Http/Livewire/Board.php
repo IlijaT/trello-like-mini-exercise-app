@@ -72,8 +72,10 @@ class Board extends Component
         $this->groups = Group::ordered()->get();
     }
 
-    public function removeGroup(Group $group)
+    public function removeGroup($groupId)
     {
+        $group = Group::findOrFail($groupId);
+        $group->tasks()->delete();
         $group->delete();
         $this->groups = Group::ordered()->get();
     }
